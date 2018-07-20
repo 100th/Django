@@ -10,10 +10,16 @@ def lnglat_validator(value):
 
 
 class Post(models.Model):
+    STATUS_CHOICES = (
+        ('d', 'Draft'),
+        ('p', 'Published'),
+        ('w', 'Withdrawn'),
+    )
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, verbose_name='제목',
         help_text='포스팅 제목을 입력해주세요. 최대 100자 내외')
     text = models.TextField(verbose_name='내용')
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     tags = models.CharField(max_length=100, blank=True)
