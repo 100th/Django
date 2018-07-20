@@ -20,6 +20,10 @@ def post_draft_list(request):
 
 
 def post_detail(request, pk):
+    # try:
+    #     post = Post.objects.get(id=id)
+    # except Post.DoesNotExist:
+    #     raise Http404             # 아래와 같은 표현이다 (감싸주는 것임)
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
