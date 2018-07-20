@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 from django.utils.safestring import mark_safe
 
 
@@ -28,4 +28,13 @@ class PostAdmin(admin.ModelAdmin):
         # django message framework 활용
     make_published.short_description = '지정 포스팅을 Published 상태로 변경합니다.'
 
-admin.site.register(Comment)
+#admin.site.register(Comment)
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ["name"]

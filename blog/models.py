@@ -23,6 +23,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     tags = models.CharField(max_length=100, blank=True)
+    tag_set = models.ManyToManyField('Tag', black=True)
     lnglat = models.CharField(max_length=50,
         validators=[lnglat_validator],
         blank=True, help_text='경도/위도 포맷으로 입력')
@@ -54,3 +55,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):  # 태그에서 자기 자신 보이도록 설정
+        return self.name
