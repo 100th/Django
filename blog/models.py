@@ -3,6 +3,7 @@ from django.forms import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+# from django.conf import settings
 
 
 # 위도/경도 유효성 체크 함수 (정규표현식으로)
