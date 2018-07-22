@@ -28,7 +28,7 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True)           # publish 날짜
     # updated_at = models.DateTimeField(auto_now=True)로 강의에서 씀
     tags = models.CharField(max_length=100, blank=True)                    # 태그
-    tag_set = models.ManyToManyField('Tag', black=True)                    # 태그 set
+    tag_set = models.ManyToManyField('Tag', blank=True)                    # 태그 set
     lnglat = models.CharField(max_length=50,                                # 위도/경도
         validators=[lnglat_validator],
         blank=True, help_text='경도/위도 포맷으로 입력')

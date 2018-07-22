@@ -1,6 +1,9 @@
 from django.urls import path, re_path
 from . import views
 
+# Django 서버로 Http 요청이 들어올 때마다,
+# URLConf 매핑 List 를 처음부터 끝까지 순차적으로 훝으며 검색
+
 urlpatterns = [
     re_path(r'^$', views.post_list, name='post_list'),
     re_path(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
