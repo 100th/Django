@@ -5,12 +5,16 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
 
+# 글 목록 불러오는 함수
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    # posts = Post.objects.all() 모든 글을 불러오려면 이렇게 쓸 수 있나봐
     return render(request, 'blog/post_list.html', {
         'posts': posts,
     })
 
+
+# 글 초안 (draft) 목록 불러오는 함수
 @login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
@@ -19,15 +23,17 @@ def post_draft_list(request):
     })
 
 
-def post_detail(request, pk):
+# 글의 세부 내용 불러오는 함수
+def post_detail(request, pk):   # 여기서 pk는 id 같은 것
     # try:
     #     post = Post.objects.get(id=id)
     # except Post.DoesNotExist:
     #     raise Http404             # 아래와 같은 표현이다 (감싸주는 것임)
-    post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk)   # 404 에러 나오도록 한다
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
+# 글쓰기 함수
 @login_required
 def post_new(request):
     if request.method == "POST":
@@ -43,6 +49,7 @@ def post_new(request):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+# 글 수정 함수
 @login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -58,12 +65,16 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+
+# 글 publish 함수
 @login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('post_detail', pk=pk)
 
+
+# 글 지우기 함수
 @login_required
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -71,6 +82,7 @@ def post_remove(request, pk):
     return redirect('post_list')
 
 
+# 댓글 쓰는 함수
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -85,12 +97,15 @@ def add_comment_to_post(request, pk):
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
 
+# 댓글 승인 함수 (승인을 받아야 댓글이 달린다)
 @login_required
 def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
     return redirect('post_detail', pk=comment.post.pk)
 
+
+# 댓글 제거 함수
 @login_required
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
