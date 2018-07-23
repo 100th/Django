@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import login, logout
 from django.shortcuts import redirect
 
+app_name = 'shop'
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     # re_path(r'^accounts/login/$', login, name='login'), #import에서 안쓰면 views.login 이다.
@@ -12,7 +13,7 @@ urlpatterns = [
     re_path(r'^blog/', include('blog.urls')),
 
     re_path(r'^accounts/', include('accounts.urls')),
-    re_path(r'^shop/', include('shop.urls')),   # namespace='shop'
+    re_path(r'^shop/', include('shop.urls')),
     re_path(r'^$', lambda request: redirect('shop:index'), name='root'),
 ]
 

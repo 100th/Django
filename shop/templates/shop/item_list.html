@@ -1,0 +1,26 @@
+{% extends "shop/layout.html" %}
+{% load humanize %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for item in item_list %}
+                <div class="col-sm-2">
+                    <div class="card">
+                        {% if item.photo %}
+                            <img class="card-img-top" src="{{ item.photo.url }}" alt="Card image cap">
+                        {% endif %}
+                        <div class="card-body">
+                            <p class="card-text">{{ item.name }}</p>
+                            <p class="card-text">{{ item.amount|intcomma }}원</p>
+                            {% if item.desc %}
+                                <p class="card-text">{{ item.desc }}</p>
+                            {% endif %}
+                        </div>
+                        <a href="" class="btn btn-primary btn-block">구매하기</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
