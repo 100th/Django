@@ -16,3 +16,6 @@ class Order(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='상품명')
     amount = models.PositiveIntegerField(verbose_name='결제금액')
+
+    class Meta:
+        ordering = ('-id',)
