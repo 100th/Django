@@ -5,10 +5,16 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import login, logout
 from django.shortcuts import redirect
 
+# 최상위 주소로 바로 가는 법
+# def root(request):
+#     return redirect('blog:post_list')
+
 app_name = 'shop'
 urlpatterns = [
+    # re_path(r'^$', root, name='root'),    # 아래와 같다
+    # re_path(r'^$', lambda r: redirect('blog:post_list'), name='root'),
     re_path(r'^admin/', admin.site.urls),
-    # re_path(r'^accounts/login/$', login, name='login'), #import에서 안쓰면 views.login 이다.
+    # re_path(r'^accounts/login/$', login, name='login'),    #import에서 안쓰면 views.login 이다.
     re_path(r'^accounts/logout/$', logout, name='logout', kwargs={'next_page': '/'}),
     re_path(r'^blog/', include('blog.urls')),
 

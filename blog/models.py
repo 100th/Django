@@ -52,6 +52,9 @@ class Post(models.Model):
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
 
+    # resolve_url을 위한 모델 클래스 추가 구현
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.id])
 
 
 # Comment 클래스

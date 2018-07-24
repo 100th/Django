@@ -1,0 +1,25 @@
+{% extends "shop/layout.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="col-md-8 offset-md-2 mt-3">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="card card-default">
+        <div class="card-header">
+          주문하기
+        </div>
+        <div class="card-body">
+          <table>
+            {{ form.as_table }}
+          </table>
+        </div>
+        <div class="card-footer">
+          <input type="submit" class="btn btn-primary" value="결제하기" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
