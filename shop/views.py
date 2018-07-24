@@ -43,4 +43,5 @@ def order_new(request, item_id):
         form = OrderForm(initial=initial)
     return render(request, 'shop/order_form.html', {
         'form': form,
+        'iamport_shop_id': 'iamport', # FIXME: 가맹점 식별코드
 })
