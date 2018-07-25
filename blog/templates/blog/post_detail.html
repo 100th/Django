@@ -50,7 +50,8 @@
         {% empty %}
         <p>No comments here yet :(</p>
         {% endfor %}
-        <a href="{% url "post_list" %}" class="btn btn-primary">글 목록</a>
+        <a href="{% url "post_list" %}" class="btn btn-primary">목록으로</a>
+        <a href="{% url "post_edit" post.pk %}" class="btn btn-secondary">수정하기</a>
       </div>
     </div>
   </div>

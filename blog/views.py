@@ -40,15 +40,15 @@ def post_detail(request, pk):   # 여기서 pk는 id 같은 것
 @login_required
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
+        form = PostForm(request.POST, request.FILES)    # 뒤에 request.FILES 추가함
+        if form.is_valid():     # 유효성 검사 수행
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
-        form = PostForm()
+            form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
