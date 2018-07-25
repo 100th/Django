@@ -17,7 +17,7 @@
                                 <p class="card-text">{{ item.desc }}</p>
                             {% endif %}
                         </div>
-                        <a href="{% url "shop:order_new" item.id %}" class="btn btn-primary btn-block">구매하기</a>
+                        <a href="{% url "shop:order_new" item.id %}" class="btn btn-secondary btn-block">구매하기</a>
                     </div>
                 </div>
             {% endfor %}

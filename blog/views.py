@@ -7,8 +7,8 @@ from .forms import PostForm, CommentForm
 
 # 글 목록 불러오는 함수
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    # posts = Post.objects.all() 모든 글을 불러오려면 이렇게 쓸 수 있나봐
+    #posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.all() #모든 글을 불러오려면 이렇게 쓸 수 있나봐
     q = request.GET.get('q', '')    # 검색 기능
     if q:
         qs = qs.filter(title__icontains=q)
