@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import Item
+from .models import Item, Order
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
@@ -10,3 +10,8 @@ class ItemAdmin(admin.ModelAdmin):
         if item.photo:
             return mark_safe('<img src="{}" style="width: 75px;" />'.format(item.photo.url))
         return None
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('merchant_uid', 'imp_uid', 'name', 'status', 'created_at')
