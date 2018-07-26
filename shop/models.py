@@ -1,6 +1,8 @@
 from uuid import uuid4
 from django.conf import settings
 from django.db import models
+from iamport import Iamport
+# pip install iamport-rest-client
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
@@ -34,3 +36,19 @@ class Order(models.Model):
 
     class Meta:
         ordering = ('-id',)
+
+
+    @property
+    def api(self):
+        'Iamport Client 인스턴스'
+        return Iamport(settings.IAMPORT_API_KEY, settings.IAMPORT_API_SECRET)
+
+    def update(self, commit=True, meta=None):
+        '결제내역 갱신'
+        if self.imp_uid:
+            self.meta = meta or self.api.find(imp_uid=self.imp_uid)
+            # merchant_uid는 반드시 매칭되어야 합니다.
+            assert str(self.merchant_uid) == self.meta['merchant_uid']
+            self.status = self.meta['status']
+        if commit:
+            self.save()

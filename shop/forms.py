@@ -1,4 +1,5 @@
 import json
+from django.conf import settings
 from django.utils.encoding import smart_text
 from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
@@ -23,12 +24,11 @@ class PayForm(forms.ModelForm):
         }
         return hidden_fields + render_to_string('shop/_iamport.html', {
             'json_fields': mark_safe(json.dumps(fields, ensure_ascii=False)),
-            'iamport_shop_id': 'iamport', # FIXME: 각자의 상점 아이디로 변경 가능
+            'iamport_shop_id': settings.IAMPORT_SHOP_ID,
         })
 
 
     def save(self):
         order = super().save(commit=False)
-        order.status = 'paid' # FIXME: 아임포트 API를 통한 확인 후에 변경을 해야만 합니다.
-        order.save()
+        order.update() # IAMPORT API를 통한 갱신
         return order
