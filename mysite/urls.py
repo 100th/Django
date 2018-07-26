@@ -17,6 +17,7 @@ urlpatterns = [
     # re_path(r'^$', root, name='root'),    # 아래와 같다
     # re_path(r'^$', lambda r: redirect('blog:post_list'), name='root'),
     # re_path(r'^$', lambda request: redirect('shop:index'), name='root'),
+    re_path(r'^', include('home.urls')),
     re_path(r'^admin/', admin.site.urls),
     # re_path(r'^accounts/login/$', login, name='login'),    #import에서 안쓰면 views.login 이다.
     re_path(r'^accounts/logout/$', logout, name='logout', kwargs={'next_page': '/'}),
