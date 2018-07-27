@@ -1,3 +1,5 @@
+# /blog/views.py
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
@@ -43,6 +45,8 @@ def post_new(request):
         form = PostForm(request.POST, request.FILES)    # 뒤에 request.FILES 추가함
         if form.is_valid():     # 유효성 검사 수행
             post = form.save(commit=False)
+            # messages.add_message(request, messages.INFO, '새 글이 등록되었습니다.')
+            messages.success(request, '새 글이 등록되었습니다.')
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
