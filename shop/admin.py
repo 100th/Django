@@ -14,4 +14,4 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('merchant_uid', 'imp_uid', 'name', 'status', 'created_at')
+    list_display = ['imp_uid', 'user', 'name', 'amount_html', 'status_html', 'paid_at', 'receipt_link']
