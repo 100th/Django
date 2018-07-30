@@ -67,6 +67,7 @@ def post_edit(request, pk):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
+            messages.success(request, '글이 수정되었습니다.')
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)

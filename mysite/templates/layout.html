@@ -45,12 +45,26 @@
            {% else %}
            {% endif %}
          </ul>
+         <ul class="nav navbar-nav navbar-right">
+           <li><a href="#">Join</a></li>
+           <li><a href="#">Login</a></li>
+         </ul>
          <form class="form-inline my-2 my-lg-0" action="{% url "shop:index" %}">
            <input name="q" value="{{ q }}" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
          </form>
        </div>
      </nav>
+     {% if messages %}
+       <div class="container">
+         {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+               [{{ message.tags }}]
+               {{ message.message }}
+           </div>
+         {% endfor %}
+       </div>
+     {% endif %}
 
     {% block content %}
     {% endblock %}
