@@ -1,9 +1,12 @@
 import re
+from django.conf import settings
 from django.forms import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-# from django.conf import settings
+from imagekit.models import ImageSpecField
+from imagekit.processors import Thumbnail
+# from django.core.urlresolvers import reverse
 
 
 # 위도/경도 유효성 체크 함수 (정규표현식으로)
@@ -20,11 +23,14 @@ class Post(models.Model):
         ('p', 'Published'),
         ('w', 'Withdrawn'),
     )
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)     # 글쓴이
-                                # settings.AUTH_USER_MODEL로 변경 가능
+    #author = models.ForeignKey('auth.User', on_delete=models.CASCADE)     # 글쓴이
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, verbose_name='제목',         # 제목
         help_text='포스팅 제목을 입력해주세요. 최대 100자 내외')
-    text = models.TextField(verbose_name='내용')                          # 내용
+    text = models.TextField(verbose_name='내용')
+    photo = models.ImageField(blank=True, upload_to='blog/post/%Y')                         # 내용
+    photo_thumbnail = ImageSpecField(source='photo', processors=[Thumbnail(300, 300)],
+                    format='JPEG', options={'quality' : 60})
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)       # Status
     created_date = models.DateTimeField(default=timezone.now)             # 글 쓴 날짜
     # created_date = models.DateTimeField(auto_now_add=True)로 강의에서 씀
@@ -41,6 +47,10 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+
+    class Meta:
+        ordering = ['-id']
 
 
     # __str__ 있으면 제목 보이도록 한다는데

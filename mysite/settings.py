@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'accounts',
     'shop',
     'home',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
