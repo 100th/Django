@@ -4,7 +4,7 @@ from django.forms import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from imagekit.models import ImageSpecField
+from imagekit.models import ProcessedImageField #ImageSpecField
 from imagekit.processors import Thumbnail
 # from django.core.urlresolvers import reverse
 
@@ -28,9 +28,10 @@ class Post(models.Model):
     title = models.CharField(max_length=100, verbose_name='제목',         # 제목
         help_text='포스팅 제목을 입력해주세요. 최대 100자 내외')
     text = models.TextField(verbose_name='내용')
-    photo = models.ImageField(blank=True, upload_to='blog/post/%Y')                         # 내용
-    photo_thumbnail = ImageSpecField(source='photo', processors=[Thumbnail(300, 300)],
-                    format='JPEG', options={'quality' : 60})
+    photo = ProcessedImageField(blank=True, upload_to='blog/post/%Y',
+                    processors=[Thumbnail(300, 300)], format='JPEG', options={'quality' : 60})                         # 내용
+    # photo_thumbnail = ImageSpecField(source='photo', processors=[Thumbnail(300, 300)],
+    #                 format='JPEG', options={'quality' : 50})
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)       # Status
     created_date = models.DateTimeField(default=timezone.now)             # 글 쓴 날짜
     # created_date = models.DateTimeField(auto_now_add=True)로 강의에서 씀
