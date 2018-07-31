@@ -15,4 +15,5 @@ urlpatterns = [
     re_path(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     re_path(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
     re_path(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
+    re_path(r'^comments/$', views.comment_list, name='comment_list'),
 ]
