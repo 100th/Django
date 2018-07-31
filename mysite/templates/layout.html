@@ -37,19 +37,23 @@
                <li class="nav-item">
                       <a class="nav-link" href="{% url "post_list" %}">Blog</a>
                </li>
-
-           {% if user.is_authenticated %}
-               <li class="nav-item">
-                   <a class="nav-link" href="{% url "profile" %}">Accounts</a>
-               </li>
-           {% else %}
-           {% endif %}
          </ul>
+            {% if not user.is_authenticated %}
          <ul class="nav navbar-nav navbar-right">
-           <li class="nav-item"><a class="nav-link" href="#">Join</a></li>
-           <li class="nav-item active"><a class="nav-link" href="#">Login</a></li>
-           <li class="nav-item"><a class="nav-link" href="#">{{ user }}님</a></li>
+           <li class="nav-item active">
+             <a class="nav-link" href="{% url "login" %}">Login</a></li>
+           <li class="nav-item">
+             <a class="nav-link" href="{% url "signup" %}">Signup</a></li>
          </ul>
+            {% else %}
+         <ul class="nav navbar-nav navbar-right">
+           <li class="nav-item active">
+             <a class="nav-link" href="{% url "logout" %}">Logout</a></li>
+           <li class="nav-item">
+             <a class="nav-link" href="{% url "profile" %}">{{ user }}'s &nbsp;Accounts</a></li>
+         </ul>
+            {% endif %}
+
          <form class="form-inline my-2 my-lg-0" action="{% url "shop:index" %}">
            <input name="q" value="{{ q }}" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>

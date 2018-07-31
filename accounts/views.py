@@ -11,7 +11,6 @@ def profile(request):
         'order_list' : order_list,
     })
 
-
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
