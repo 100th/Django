@@ -1,6 +1,6 @@
 from django import forms
 from .models import Post, Comment
-from .widgets import NaverMapPointWidget
+from mysite.widgets.naver_map_point_widget import NaverMapPointWidget
 
 
 class PostForm(forms.ModelForm):
