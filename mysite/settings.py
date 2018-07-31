@@ -125,3 +125,5 @@ LOGIN_REDIRECT_URL = '/'
 IAMPORT_SHOP_ID = 'iamport' # 가맹점 식별코드
 IAMPORT_API_KEY = '****************' # REST API 키
 IAMPORT_API_SECRET = '******************************' # REST API SECRET
+
+NAVER_CLIENT_ID = 'tyVwh7e8tFBTsskqQnTN'
