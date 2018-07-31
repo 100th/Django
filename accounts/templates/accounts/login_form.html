@@ -1,4 +1,5 @@
 {% extends "accounts/layout.html" %}
+{% load socialaccount %}
 {% block content %}
 <div class="container">
   <div class="row">
@@ -14,4 +15,22 @@
     </div>
   </div>
 </div>
+
+<h3>Social Login</h3>
+<ul>
+  {% for provider in providers %}
+  <li>
+    {% if provider.social_app %}
+    <a href="{% provider_login_url provider.id %}">
+      {{ provider.name }}
+    </a>
+    {% else %}
+    <a>
+      Provider {{ provider.name }} 설정이 필요합니다.
+    </a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}

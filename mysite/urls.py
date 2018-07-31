@@ -24,7 +24,9 @@ urlpatterns = [
     re_path(r'^blog/', include('blog.urls')),
     re_path(r'^home/', include('home.urls')),
     re_path(r'^accounts/', include('accounts.urls')),
+    re_path(r'^accounts/', include('allauth.urls')),
     re_path(r'^shop/', include('shop.urls')),
+    # include 시에는 url pattern 끝에 $ 안붙인다.
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
