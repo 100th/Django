@@ -43,7 +43,7 @@ class Post(models.Model):
     lnglat = models.CharField(max_length=50,                                # 위도/경도
         validators=[lnglat_validator],
         blank=True, help_text='경도/위도 포맷으로 입력')
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=True)
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])   # , default=True
 
 
     # publish 함수. 날짜는 현재 시간이다.

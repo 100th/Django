@@ -1,3 +1,18 @@
+{% load static %}
+
 {% include "widgets/input.html" %}
 
-<div id="rateit_{{ widget.attrs.id }}" class="rateit" data-rateit-backingfld="#{{ widget.attrs.id }}"></div>
+<link rel="stylesheet" href="{% static "widgets/rateit.js/rateit.css" %}" />
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="{% static "widgets/rateit.js/jquery.rateit.min.js" %}"></script>
+
+<div id="rateit_{{ widget.attrs.id }}" class="rateit"></div>
+
+<script>
+$(function() {
+  $('#rateit_{{ widget.attrs.id }}').bind('rated', function() {
+    var value = $(this).rateit('value');
+  $('#{{ widget.attrs.id }}').val(value);
+  });
+});
+</script>
