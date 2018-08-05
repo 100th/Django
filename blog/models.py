@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField #ImageSpecField
 from imagekit.processors import Thumbnail
+from django.core.validators import MaxValueValidator, MinValueValidator
 # from django.core.urlresolvers import reverse
 
 
@@ -42,6 +43,7 @@ class Post(models.Model):
     lnglat = models.CharField(max_length=50,                                # 위도/경도
         validators=[lnglat_validator],
         blank=True, help_text='경도/위도 포맷으로 입력')
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=True)
 
 
     # publish 함수. 날짜는 현재 시간이다.
