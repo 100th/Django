@@ -1,7 +1,7 @@
 from django import forms
 from .models import Post, Comment
 from mysite.widgets.naver_map_point_widget import NaverMapPointWidget
-from .widgets import CounterTextInput, RateitjsWidget
+from .widgets import CounterTextInput, RateitjsWidget, AutoCompleteSelect
 
 
 class PostForm(forms.ModelForm):
@@ -12,6 +12,7 @@ class PostForm(forms.ModelForm):
             'lnglat' : NaverMapPointWidget(),
             'rating': RateitjsWidget,
             'title' : CounterTextInput,
+            'country': AutoCompleteSelect,
         }
 
 
