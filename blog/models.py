@@ -26,9 +26,9 @@ class Post(models.Model):
     )
     #author = models.ForeignKey('auth.User', on_delete=models.CASCADE)     # 글쓴이
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100, verbose_name='제목',         # 제목
-        help_text='포스팅 제목을 입력해주세요. 최대 100자 내외')
-    text = models.TextField(verbose_name='내용')
+    title = models.CharField(max_length=20, verbose_name='Title',           # 제목
+        help_text='Please enter a posting title. Up to 20 characters.')
+    text = models.TextField(verbose_name='Contents')
     photo = ProcessedImageField(blank=True, upload_to='blog/post/%Y',
                     processors=[Thumbnail(300, 300)], format='JPEG', options={'quality' : 60})                         # 내용
     # photo_thumbnail = ImageSpecField(source='photo', processors=[Thumbnail(300, 300)],
@@ -98,7 +98,7 @@ class Comment(models.Model):
 
 # Tag 클래스. Relation있게
 class Tag(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=10, unique=True)
 
     # 태그에서 자기 자신 보이도록 설정
     def __str__(self):
