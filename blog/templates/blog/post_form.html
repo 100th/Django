@@ -1,13 +1,33 @@
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <input type="submit" />
-</form>
+{% extends "blog/layout.html" %}
 
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-dismissible alert-light">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Please!</strong>
+        <ul>
+          <li>방명록 매너를 지켜주세요!</li>
+          <li>Please keep your manners.</li>
+        </ul>
+      </div>
+      <h1>New post</h1>
+
+      <form action="" method="post" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table table-bordered table-hover">
+          {{ form.as_table }}
+        </table>
+        <button type="submit" class="sqave btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
 <script>
 /* 자바스크립트로 user_agent 필드값 채워넣기 */
 var dom = document.getElementById('{{ form.user_agent.id_for_label }}');
 dom.value = navigator.userAgent;
 </script>
+{% endblock %}

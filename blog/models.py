@@ -42,8 +42,7 @@ class Post(models.Model):
     tags = models.CharField(max_length=100, blank=True)                    # 태그, Relation없이
     tag_set = models.ManyToManyField('Tag', blank=True)                    # 태그 set, Relation있게
     lnglat = models.CharField(max_length=50,                                # 위도/경도
-        validators=[lnglat_validator],
-        blank=True, help_text='경도/위도 포맷으로 입력')
+        validators=[lnglat_validator], blank=True)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])   # , default=True
 
 
