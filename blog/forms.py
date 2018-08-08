@@ -13,6 +13,7 @@ class PostForm(forms.ModelForm):
             'rating': RateitjsWidget,
             'title' : CounterTextInput,
             'country': AutoCompleteSelect,
+            'user_agent': forms.HiddenInput,
         }
 
 

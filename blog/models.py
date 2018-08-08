@@ -34,6 +34,7 @@ class Post(models.Model):
     # photo_thumbnail = ImageSpecField(source='photo', processors=[Thumbnail(300, 300)],
     #                 format='JPEG', options={'quality' : 50})
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)       # Status
+    user_agent = models.CharField(max_length=200)                         # 숨길 예정
     created_date = models.DateTimeField(default=timezone.now)             # 글 쓴 날짜
     # created_date = models.DateTimeField(auto_now_add=True)로 강의에서 씀
     published_date = models.DateTimeField(blank=True, null=True)           # publish 날짜
