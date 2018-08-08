@@ -19,11 +19,11 @@ def lnglat_validator(value):
 
 # Post 클래스
 class Post(models.Model):
-    STATUS_CHOICES = (          # Status 선택
-        ('d', 'Draft'),
-        ('p', 'Published'),
-        ('w', 'Withdrawn'),
-    )
+    # STATUS_CHOICES = (          # Status 선택
+    #     ('d', 'Draft'),
+    #     ('p', 'Published'),
+    #     ('w', 'Withdrawn'),
+    # )
     #author = models.ForeignKey('auth.User', on_delete=models.CASCADE)     # 글쓴이
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=20, verbose_name='Title',           # 제목
@@ -33,17 +33,18 @@ class Post(models.Model):
                     processors=[Thumbnail(300, 300)], format='JPEG', options={'quality' : 60})                         # 내용
     # photo_thumbnail = ImageSpecField(source='photo', processors=[Thumbnail(300, 300)],
     #                 format='JPEG', options={'quality' : 50})
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES)       # Status
+    # status = models.CharField(max_length=1, choices=STATUS_CHOICES)       # Status
     user_agent = models.CharField(max_length=200)                         # 숨길 예정
     created_date = models.DateTimeField(default=timezone.now)             # 글 쓴 날짜
     # created_date = models.DateTimeField(auto_now_add=True)로 강의에서 씀
     published_date = models.DateTimeField(blank=True, null=True)           # publish 날짜
     # updated_at = models.DateTimeField(auto_now=True)로 강의에서 씀
     tags = models.CharField(max_length=100, blank=True)                    # 태그, Relation없이
-    tag_set = models.ManyToManyField('Tag', blank=True)                    # 태그 set, Relation있게
+    # tag_set = models.ManyToManyField('Tag', blank=True)                    # 태그 set, Relation있게
     lnglat = models.CharField(max_length=50,                                # 위도/경도
         validators=[lnglat_validator], blank=True)
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])   # , default=True
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text='How was my blog? Please evaluate!')   # , default=True
 
 
     # publish 함수. 날짜는 현재 시간이다.
@@ -96,10 +97,10 @@ class Comment(models.Model):
 
 
 
-# Tag 클래스. Relation있게
-class Tag(models.Model):
-    name = models.CharField(max_length=10, unique=True)
-
-    # 태그에서 자기 자신 보이도록 설정
-    def __str__(self):
-        return self.name
+# # Tag 클래스. Relation있게
+# class Tag(models.Model):
+#     name = models.CharField(max_length=10, unique=True)
+#
+#     # 태그에서 자기 자신 보이도록 설정
+#     def __str__(self):
+#         return self.name

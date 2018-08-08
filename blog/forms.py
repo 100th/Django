@@ -7,7 +7,7 @@ from .widgets import CounterTextInput, RateitjsWidget, AutoCompleteSelect
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = '__all__'      # ['title', 'text', 'lnglat']
+        fields = ['title', 'rating', 'text', 'photo', 'tags', 'lnglat']
         widgets = {
             'lnglat' : NaverMapPointWidget(),
             'rating': RateitjsWidget,

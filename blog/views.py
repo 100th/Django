@@ -19,13 +19,13 @@ def post_list(request):
     })  #'post_list': posts,
 
 
-# 글 초안 (draft) 목록 불러오는 함수
-@login_required
-def post_draft_list(request):
-    posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
-    return render(request, 'blog/post_draft_list.html', {
-        'posts': posts
-    })
+# # 글 초안 (draft) 목록 불러오는 함수
+# @login_required
+# def post_draft_list(request):
+#     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
+#     return render(request, 'blog/post_draft_list.html', {
+#         'posts': posts
+#     })
 
 
 # 글의 세부 내용 불러오는 함수
@@ -121,6 +121,7 @@ def comment_remove(request, pk):
     return redirect('post_detail', pk=comment.post.pk)
 
 
+@login_required
 def comment_list(request):
     comment_list = Comment.objects.all().select_ralated('post')
     return render(request, 'blog/comment_list.html', {
