@@ -1,6 +1,6 @@
-from django.conf import settings
 from django.urls import path, re_path
-from . import views
+from .views import about
 
 urlpatterns = [
+    re_path(r'^$', about, name='about'),
 ]

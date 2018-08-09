@@ -1,6 +1,6 @@
-from django.conf import settings
 from django.urls import path, re_path
-from . import views
+from .views import portfolio
 
 urlpatterns = [
+    re_path(r'^$', portfolio, name='portfolio'),
 ]
