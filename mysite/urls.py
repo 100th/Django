@@ -26,6 +26,8 @@ urlpatterns = [
     re_path(r'^accounts/', include('accounts.urls')),
     re_path(r'^accounts/', include('allauth.urls')),
     re_path(r'^shop/', include('shop.urls')),
+    re_path(r'^about/', include('about.urls')),
+    re_path(r'^portfolio/', include('portfolio.urls')),
     # include 시에는 url pattern 끝에 $ 안붙인다.
 ]
 
