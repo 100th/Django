@@ -1,28 +1,32 @@
 {% extends "home/layout.html" %}
 {% block content %}
-<div class="container">
-  <div class="jumbotron">
-    <h1>Portfolio Webpage using Django <sup>by Jonghyun Lee</sup></h1>
-    <p>Django를 이용하여 만든 개인 포트폴리오 웹페이지입니다.</p>
-    <p>
-      <a class="btn btn-lg btn-primary" href="https://github.com/100th">
-        Github Link &raquo;
-      </a>
-      <a class="btn btn-lg btn-primary" href="https://www.instagram.com/99th_day">
-        Instagram Link &raquo;
-      </a>
-    </p>
-  </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="alert alert-dismissible alert-light">
-        <ul>
-          <li> 안녕하세요. Django로 만든 웹페이지입니다. </li>
-          <li> 안녕하세요. Django로 만든 웹페이지입니다. 안녕하세요. Django로 만든 웹페이지입니다. </li>
-        </ul>
+<div class="container-fluid main-content text-center">
+  <div class="container">
+    <div class="jumbotron" id="about-jumbo"></div>
+    <div class="row">
+      <div class="col-lg-8 col-sm-12">
+        <h1 class="display-5">Jonghyun Lee</h1>
+        <p>
+          <br>안녕하세요. 제 이름은 <strong>이종현</strong> 입니다. 저는 수원에서 살고 있으며, 아주대학교에 다니고 있습니다.</br>
+          <br>저는 모든 화면 크기에서 작동하는 <strong>Django</strong> 웹 사이트를 디자인하고 개발하는데 관심이 있습니다.</br>
+          <br>제가 가장 관심있는 분야는 <strong>Python</strong>의 웹 프레임워크인 Django를 이용한 <strong>'Back End'</strong> 개발이지만,</br>
+          <br>최근에 디자인과 <strong>'Front End'</strong> 분야에 관심을 갖기 시작했습니다.</br>
+          <br>FIXME! 수정이 필요합니다.</br>
+        </p>
+        <div class="skill-list">
+          <h5 class="mb-1"><strong>Frontend</strong></h5>
+          <ul class="skills">
+              <i class="fa fa-fw fa-3x fa-html5"></i>
+              <i class="fab fa-python"></i>
+              <span class='code-box'>HTML</span>
+          </ul>
+
+          <h5 class="mb-1"><strong>Backend</strong></h5>
+          <ul class="skills">
+            <i class="fa fa-fw fa-3x fa-python"></i>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

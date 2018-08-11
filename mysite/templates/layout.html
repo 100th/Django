@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>My Portfolio Webpage using Django</title>
     <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootswatch/4.1.2/flatly/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
         html { position: relative; min-height: 100%; }
         body { margin-bottom: 60px; }
@@ -82,14 +83,17 @@
 
     {% block extra_body %}
     {% endblock %}
+    <div style="text-align:center">
     <div id="page-footer">
       <div class="container">
         <p class="text-muted">
-          &copy; 2018. Jonghyun Lee
-          // Ajou Univ. Industrial Engineering
-          // 99th_day@naver.com
+          <a> &copy; 2018. Jonghyun Lee</a> 
+          <a href="https://github.com/100th" target="_blank"><i class="fa fa-fw fa-2x fa-github"></i></a>
+          <a href="https://www.instagram.com/99th_day" target="_blank"><i class="fa fa-fw fa-2x fa-instagram"></i></a>
+          <a href="mailto:99th_day@naver.com" target="_blank"><i class="fa fa-fw fa-2x fa-envelope"></i></a>
         </p>
       </div>
     </div>
+  </div>
 </body>
 </html>
