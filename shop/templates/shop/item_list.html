@@ -6,27 +6,35 @@
   <div class="jumbotron">
     <h1>Shop</h1></br>
   </div>
-
-    <div class="container">
-        <div class="row">
-            {% for item in item_list %}
-                <div class="col-sm-2">
-                    <div class="card">
-                        {% if item.photo %}
-                            <img class="card-img-top" src="{{ item.photo.url }}" alt="Card image cap">
-                        {% endif %}
-                        <div class="card-body">
-                            <p class="card-text">{{ item.name }}</p>
-                            <p class="card-text">{{ item.amount|intcomma }}원</p>
-                            {% if item.desc %}
-                                <p class="card-text">{{ item.desc }}</p>
-                            {% endif %}
-                        </div>
-                        <a href="{% url "shop:order_new" item.id %}" class="btn btn-secondary btn-block">구매하기</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+  <div class="container">
+    <div class="alert alert-dismissible alert-primary">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h3>Warning!</h3>
+      <ul>
+        <li>Iamport를 이용한 결제 구현 테스트 창입니다.</li>
+        <li>'구매하기' 버튼을 클릭하였더라도, 실제로 결제되지 않으니 걱정하지마세요.</li>
+        <li>Even if you click the "Buy" button, you will not actually be charged, so don't worry.</li>
+      </ul>
     </div>
+    <div class="row">
+      {% for item in item_list %}
+      <div class="col-sm-2">
+        <div class="card">
+          {% if item.photo %}
+          <img class="card-img-top" src="{{ item.photo.url }}" alt="Card image cap">
+          {% endif %}
+          <div class="card-body">
+            <p class="card-text">{{ item.name }}</p>
+            <p class="card-text">{{ item.amount|intcomma }}원</p>
+            {% if item.desc %}
+            <p class="card-text">{{ item.desc }}</p>
+            {% endif %}
+          </div>
+          <a href="{% url "shop:order_new" item.id %}" class="btn btn-secondary btn-block">구매하기</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}
