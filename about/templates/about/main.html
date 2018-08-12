@@ -1,11 +1,7 @@
 {% extends "home/layout.html" %}
 {% block content %}
-{% for q in queryset %}
-<a href="{{q.slug}}">{{q.title}}</a>
-<a href="{{q.slug}}"><img src="{{q.get_image_url}}" class="img-responsive"></a>
-<br/>
-{%endfor%}
 
+{% load static %}
 
 <div class="container-fluid main-content text-center">
   <div class="container">
@@ -23,19 +19,21 @@
         <div class="skill-list">
           <h5 class="mb-1"><strong>Frontend</strong></h5>
           <ul class="skills">
-              <i class="fa fa-fw fa-3x fa-html5"></i>
-              <i class="fab fa-python"></i>
-              <span class='code-box'>HTML</span>
-          </ul>
+              <img src="{% static "about/html.png" %}" style="width: 50px;" />
+              <img src="{% static "about/css.png" %}" style="width: 60px;" />
+              <img src="{% static "about/bootstrap.png" %}" style="width: 50px;" />
+          </ul></br>
 
           <h5 class="mb-1"><strong>Backend</strong></h5>
           <ul class="skills">
-            <i class="fa fa-fw fa-3x fa-python"></i>
-            <i class="fa fa-fw fa-3x fa-django"></i>
-            <i class="fa fa-fw fa-3x fa-python"></i>
-          </ul>
-          <img src="/about/css.png" alt="css" />
+              <img src="{% static "about/python.png" %}" style="width: 60px;" />
+              <img src="{% static "about/django.png" %}" style="height: 50px;" />
+          </ul></br>
 
+          <h5 class="mb-1"><strong>Hosting</strong></h5>
+          <ul class="skills">
+              <img src="{% static "about/pythonanywhere.png" %}" style="width: 60px;" />
+          </ul></br>
         </div>
       </div>
     </div>
