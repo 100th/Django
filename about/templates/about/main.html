@@ -3,9 +3,11 @@
 
 {% load static %}
 
-<div class="container-fluid main-content text-center">
   <div class="container">
-    <div class="jumbotron" id="about-jumbo"></div>
+    <div class="jumbotron">
+        <h1>About</h1>
+    </div>
+    <div class="container-fluid main-content text-center">
     <div class="row">
       <div class="col-lg-8 col-sm-12">
         <h1 class="display-5">Jonghyun Lee</h1>
@@ -36,7 +38,9 @@
           </ul></br>
         </div>
       </div>
+      <div class="col-lg-4 col-sm-12 justify-content-center align-items-center">
+              <img src="{% static "about/background.jpg" %}" style="width: 300px;" />
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}
