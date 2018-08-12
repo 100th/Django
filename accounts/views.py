@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as auth_login
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.templatetags.socialaccount import get_providers
-from .forms import SignupForm, LoginForm
+from .forms import SignupForm #, LoginForm
 
 
 @login_required
@@ -40,6 +40,6 @@ def login(request):
         providers.append(provider)
 
     return auth_login(request,
-        authentication_form=LoginForm,
+        # authentication_form=LoginForm,
         template_name='accounts/login_form.html',
         extra_context={'providers': providers})

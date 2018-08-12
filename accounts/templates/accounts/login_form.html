@@ -1,6 +1,9 @@
 {% extends "accounts/layout.html" %}
 {% load socialaccount %}
 {% block content %}
+
+{% load static %}
+
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -10,30 +13,22 @@
           <table class="table table-hover table-bordered">
               {{ form.as_table }}
           </table>
-          <input type="submit" class="btn btn-primary" />
+          <div style="text-align:right">
+              <input type="submit" class="btn btn-primary" value="Login"/>
+          </div>
       </form>
     </div>
   </div>
-</div>
+</div></br>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
       <h3>Social Login</h3>
       <ul>
-        {% for provider in providers %}
-        <li>
-          {% if provider.social_app %}
-          <a href="{% provider_login_url provider.id %}">
-            {{ provider.name }}
-          </a>
-          {% else %}
-          <a>
-            Provider {{ provider.name }} 설정이 필요합니다.
-          </a>
-          {% endif %}
-        </li>
-        {% endfor %}
+        <a href="{% provider_login_url "naver" %}"><img src="{% static "accounts/naver.png" %}" style="width: 250px;" /></a>
+        <a href="{% provider_login_url "kakao" %}"><img src="{% static "accounts/kakao.png" %}" style="width: 250px;" /></a>
+        <a href="{% provider_login_url "facebook" %}"><img src="{% static "accounts/facebook.png" %}" style="width: 250px;" /></a>
       </ul>
     </div>
   </div>
