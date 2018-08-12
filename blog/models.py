@@ -2,12 +2,12 @@ import re
 from django.conf import settings
 from django.forms import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField #ImageSpecField
 from imagekit.processors import Thumbnail
 from django.core.validators import MaxValueValidator, MinValueValidator
-# from django.core.urlresolvers import reverse
 
 
 # 위도/경도 유효성 체크 함수 (정규표현식으로)
@@ -46,55 +46,42 @@ class Post(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)],
         help_text='How was my blog? Please evaluate!')   # , default=True
 
-
     # publish 함수. 날짜는 현재 시간이다.
     def publish(self):
         self.published_date = timezone.now()
         self.save()
 
-
     class Meta:
         ordering = ['-id']
-
 
     # __str__ 있으면 제목 보이도록 한다는데
     def __str__(self):
         return self.title
 
-
-    # Comment가 승인되면 보여준다.
-    def approved_comments(self):
-        return self.comments.filter(approved_comment=True)
-
     # resolve_url을 위한 모델 클래스 추가 구현
     def get_absolute_url(self):
-        return reverse('blog:post_detail', args=[self.id])
+        return reverse('post_detail', args=[self.id])
 
 
 # Comment 클래스
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.PROTECT)
-    author = models.CharField(max_length=200)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
-    approved_comment = models.BooleanField(default=False)
-
 
     # 이중 클래스
     class Meta:
         ordering = ['-id']  # 번호 역순으로 정렬
 
+    def get_edit_url(self):
+        return reverse('comment_edit', args=[self.post.pk, self.pk])
 
-    # Comment가 승인됐는지
-    def approve(self):
-        self.approved_comment = True
-        self.save()
+    def get_remove_url(self):
+        return reverse('comment_remove', args=[self.post.pk, self.pk])
 
-
-    # 내용 보여준다
-    def __str__(self):
+    def __str__(self):    # 내용 보여준다
         return self.text
-
 
 
 # # Tag 클래스. Relation있게

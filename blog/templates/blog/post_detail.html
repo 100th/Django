@@ -38,21 +38,18 @@
       <ul>
         {% for comment in post.comments.all %}
         <li>
-          {% if user.is_authenticated or comment.approved_comment %}
           <div class="comment">
             <div class="date">
               <small> {{ comment.created_date }} </small>
-              {% if not comment.approved_comment %}
-              <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"
-              onclick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
-              <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
-              {% endif %}
             </div>
             <small>{{ comment.author }}</small>
             <p>{{ comment.text|linebreaks }}</p>
+            {% if comment.author == request.user %}
+              <a href="{{ comment.get_edit_url }}">댓글 수정</a>
+              <a href="{{ comment.get_remove_url }}" class="text-danger">댓글 삭제</a>
+            {% endif %}
           </li>
         </div>
-        {% endif %}
         {% empty %}
         <p>No comments here yet :(</p>
         {% endfor %}

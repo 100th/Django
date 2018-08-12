@@ -91,39 +91,54 @@ def post_remove(request, pk):
 
 
 # 댓글 쓰는 함수
+@login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.author = request.user
             comment.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect(comment.post) # 'post_detail', post.pk
     else:
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
 
-# 댓글 승인 함수 (승인을 받아야 댓글이 달린다)
-@login_required
-def comment_approve(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    comment.approve()
-    return redirect('post_detail', pk=comment.post.pk)
-
-
 # 댓글 제거 함수
 @login_required
-def comment_remove(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    comment.delete()
-    return redirect('post_detail', pk=comment.post.pk)
+def comment_remove(request, pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if comment.author != request.user:
+        return redirect(comment.post)
+
+    if request.method == 'POST':
+        comment.delete()
+        return redirect(comment.post)
+
+    return render(request, 'blog/comment_confirm_remove.html', {
+        'comment' : comment,
+    })
 
 
+# 댓글 수정 함수
 @login_required
-def comment_list(request):
-    comment_list = Comment.objects.all().select_ralated('post')
-    return render(request, 'blog/comment_list.html', {
-        'comment_list' : comment_list,
+def comment_edit(request, pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if comment.author != request.user:
+        return redirect(comment.post) #('post_detail', pk)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES, instance=comment)
+        if form.is_valid():
+            comment = form.save()
+            return redirect(comment.post) # ('post_detail', pk)
+
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, 'blog/add_comment_to_post.html', {
+        'form': form,
     })
