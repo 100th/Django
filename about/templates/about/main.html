@@ -1,5 +1,11 @@
 {% extends "home/layout.html" %}
 {% block content %}
+{% for q in queryset %}
+<a href="{{q.slug}}">{{q.title}}</a>
+<a href="{{q.slug}}"><img src="{{q.get_image_url}}" class="img-responsive"></a>
+<br/>
+{%endfor%}
+
 
 <div class="container-fluid main-content text-center">
   <div class="container">
@@ -25,7 +31,11 @@
           <h5 class="mb-1"><strong>Backend</strong></h5>
           <ul class="skills">
             <i class="fa fa-fw fa-3x fa-python"></i>
+            <i class="fa fa-fw fa-3x fa-django"></i>
+            <i class="fa fa-fw fa-3x fa-python"></i>
           </ul>
+          <img src="/about/css.png" alt="css" />
+
         </div>
       </div>
     </div>

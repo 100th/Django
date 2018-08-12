@@ -27,11 +27,12 @@ urlpatterns = [
     re_path(r'^accounts/', include('allauth.urls')),
     re_path(r'^shop/', include('shop.urls')),
     re_path(r'^about/', include('about.urls')),
-    re_path(r'^portfolio/', include('portfolio.urls')),
+    re_path(r'^projects/', include('projects.urls')),
     # include 시에는 url pattern 끝에 $ 안붙인다.
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 # if settings.DEBUG:
 #     import debug_toolbar

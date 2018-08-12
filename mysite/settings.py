@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'shop',
     'home',
     'about',
-    'portfolio',
+    'projects',
     'imagekit',
     'django.contrib.sites',
     'allauth',
