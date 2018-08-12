@@ -3,10 +3,16 @@
 {% block content %}
 
 <div class="container">
+  <div class="jumbotron">
+    <h1>Accounts</h1></br>
+  </div>
+
+
+<div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h2>{{ user }}'s Profile</h2>
-      <h3>구매내역</h3>
+      <h4>{{ user }}님의 구매내역</h4></br>
+      <img src="{{ user.socialaccount_set.all.first.get_avatar_url }}" />
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
@@ -32,5 +38,5 @@
     </div>
   </div>
 </div>
-<img src="{{ user.socialaccount_set.all.first.get_avatar_url }}" />
+</div>
 {% endblock %}
