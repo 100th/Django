@@ -62,3 +62,12 @@ class DatePickerWidget(forms.DateInput):
             '//code.jquery.com/jquery-2.2.4.min.js',
             '//code.jquery.com/ui/1.12.1/jquery-ui.min.js',
         ]
+
+
+class PreviewClearableFileInput(forms.ClearableFileInput):
+    template_name = 'widgets/preview_clearable_file_input.html'
+    
+    class Media:
+        js = [
+            '//code.jquery.com/jquery-2.2.4.min.js',
+        ]

@@ -16,7 +16,6 @@ def lnglat_validator(value):
         raise ValidationError('Invalid LngLat Type')
 
 
-
 # Post 클래스
 class Post(models.Model):
     # STATUS_CHOICES = (          # Status 선택
