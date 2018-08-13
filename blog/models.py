@@ -28,6 +28,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=20, verbose_name='Title',           # 제목
         help_text='Please enter a posting title. Up to 20 characters.')
+    when = models.DateField()
     text = models.TextField(verbose_name='Contents')
     photo = ProcessedImageField(blank=True, upload_to='blog/post/%Y',
                     processors=[Thumbnail(300, 300)], format='JPEG', options={'quality' : 60})                         # 내용

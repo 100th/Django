@@ -1,18 +1,19 @@
 from django import forms
 from .models import Post, Comment
 from mysite.widgets.naver_map_point_widget import NaverMapPointWidget
-from .widgets import CounterTextInput, RateitjsWidget, AutoCompleteSelect
+from .widgets import CounterTextInput, RateitjsWidget, AutoCompleteSelect, DatePickerWidget
 
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'rating', 'text', 'photo', 'tags', 'lnglat']
+        fields = ['title', 'rating', 'when', 'text', 'photo', 'tags', 'lnglat']
         widgets = {
             'lnglat' : NaverMapPointWidget(),
             'rating': RateitjsWidget,
             'title' : CounterTextInput,
             'country': AutoCompleteSelect,
+            'when': DatePickerWidget,
             'user_agent': forms.HiddenInput,
         }
 
