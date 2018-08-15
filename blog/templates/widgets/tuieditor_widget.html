@@ -1,0 +1,22 @@
+{% include "django/forms/widgets/textarea.html" %}
+
+<div id="editor_{{ widget.attrs.id }}" style="width: 100%;"></div>
+
+<script>
+$(function() {
+  var $el = $('#{{ widget.attrs.id }}');
+
+  var editor = $('#editor_{{ widget.attrs.id }}').tuiEditor({
+    initialEditType: 'markdown',
+    previewStyle: 'vertical',
+    initialValue: $el.val(),
+    height: 'auto',
+    events: {
+      change: function() {
+        var markdown = editor.data('tuiEditor').getMarkdown();
+        $el.val(markdown);
+      }
+    }
+  });
+});
+</script>

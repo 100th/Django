@@ -45,6 +45,7 @@ class Post(models.Model):
         validators=[lnglat_validator], blank=True)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)],
         help_text='How was my blog? Please evaluate!')   # , default=True
+        
 
     # publish 함수. 날짜는 현재 시간이다.
     def publish(self):

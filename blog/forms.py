@@ -1,7 +1,7 @@
 from django import forms
 from .models import Post, Comment
 from mysite.widgets.naver_map_point_widget import NaverMapPointWidget
-from .widgets import CounterTextInput, RateitjsWidget, AutoCompleteSelect, DatePickerWidget, PreviewClearableFileInput
+from .widgets import CounterTextInput, RateitjsWidget, AutoCompleteSelect, DatePickerWidget, PreviewClearableFileInput, TuiEditorWidget
 
 
 class PostForm(forms.ModelForm):
@@ -16,6 +16,7 @@ class PostForm(forms.ModelForm):
             'when': DatePickerWidget,
             'photo': PreviewClearableFileInput,
             'user_agent': forms.HiddenInput,
+            'text': TuiEditorWidget,
         }
 
 
