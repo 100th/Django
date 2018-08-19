@@ -30,34 +30,34 @@
        <div class="collapse navbar-collapse" id="navbarColor01">
          <ul class="navbar-nav mr-auto">
                <li class="nav-item active">
-                  <a class="nav-link" href="{% url "home" %}">Home<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{% url "home" %}"><i class="fa fa-fw fa-home"></i>Home<span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item">
-                      <a class="nav-link" href="{% url "about" %}">About</a>
+                      <a class="nav-link" href="{% url "about" %}"><i class="fa fa-fw fa-user"></i>About</a>
                </li>
                <li class="nav-item">
-                      <a class="nav-link" href="{% url "projects" %}">Projects</a>
+                      <a class="nav-link" href="{% url "projects" %}"><i class="fa fa-fw fa-folder-open"></i>Projects</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="{% url "shop:index" %}">Shop</a>
+                  <a class="nav-link" href="{% url "shop:index" %}"><i class="fa fa-fw fa-shopping-cart"></i>Shop</a>
                </li>
                <li class="nav-item">
-                      <a class="nav-link" href="{% url "post_list" %}">GuestBook</a>
+                      <a class="nav-link" href="{% url "post_list" %}"><i class="fa fa-fw fa-file-text"></i>GuestBook</a>
                </li>
          </ul>
             {% if not user.is_authenticated %}
          <ul class="nav navbar-nav navbar-right">
            <li class="nav-item active">
-             <a class="nav-link" href="{% url "login" %}?next={{ request.path }}">Login</a></li>
+             <a class="nav-link" href="{% url "login" %}?next={{ request.path }}"><i class="fa fa-fw fa-mouse-pointer"></i>Login</a></li>
            <li class="nav-item">
-             <a class="nav-link" href="{% url "signup" %}">Signup</a></li>
+             <a class="nav-link" href="{% url "signup" %}"><i class="fa fa-fw fa-user-plus"></i>Signup</a></li>
          </ul>
             {% else %}
          <ul class="nav navbar-nav navbar-right">
            <li class="nav-item active">
-             <a class="nav-link" href="{% url "logout" %}?next={{ request.path }}">Logout</a></li>
+             <a class="nav-link" href="{% url "logout" %}?next={{ request.path }}"><i class="fa fa-fw fa-bed"></i>Logout</a></li>
            <li class="nav-item">
-             <a class="nav-link" href="{% url "profile" %}">{{ user }}'s &nbsp;Accounts</a></li>
+             <a class="nav-link" href="{% url "profile" %}"><i class="fa fa-fw fa-heart"></i>{{ user }}'s &nbsp;Accounts</a></li>
          </ul>
             {% endif %}
 
