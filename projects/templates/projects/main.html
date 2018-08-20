@@ -1,8 +1,10 @@
 {% extends "home/layout.html" %}
 {% block content %}
+
+{% load static %}
 <div class="container">
   <div class="jumbotron">
-  <h1>Projects</h1></br>
+  <h1><i class="fa fa-fw fa-folder-open"></i>Projects</h1></br>
 
 </div>
   <div class="row">
@@ -14,7 +16,7 @@
           <h5 class="card-title">Auto stock trading program</h5>
           <h6 class="card-subtitle text-muted">Python, Keras, Tensorflow, Matplotlib</h6>
         </div>
-        <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
+        <img style="height: 200px; width: 100%; display: block; border: 1px solid lightgray" src="{% static "projects/002.png" %}" alt="Card image">
         <div class="card-body">
           <p class="card-text">강화학습과 딥러닝을 이용한 키움증권 주식 자동매매 프로그램입니다. 급등주 포착
             알고리즘을 통해 종목을 추천한 후, 선정된 종목의 OHLCV 데이터를 크롤링하여 CSV 파일로 저장합니다.
@@ -44,7 +46,7 @@
           <h5 class="card-title">My portfolio website</h5>
           <h6 class="card-subtitle text-muted">Python, Django, Bootstrap</h6>
         </div>
-        <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
+          <img style="height: 200px; width: 100%; display: block; border: 1px solid lightgray" src="{% static "projects/001.png" %}" alt="Card image">
         <div class="card-body">
           <p class="card-text">Django를 이용하여 만든 개인 포트폴리오 웹 페이지입니다.
           PythonAnyWhere를 통해 호스팅하였고, Bootstrap으로 Front End 작업을 하였습니다.</p>
@@ -59,7 +61,7 @@
           <a href="https://github.com/100th/Django" class="card-link">Github source code link</a>
         </div>
         <div class="card-footer text-muted">
-          2018. 7. 12. ~
+          2018. 7. 12. ~ 2018. 8. 20.
         </div>
       </div>
     </div>
@@ -71,7 +73,7 @@
           <h5 class="card-title">Supreme bot</h5>
           <h6 class="card-subtitle text-muted">Python, Selenium, Beautifulsoup</h6>
         </div>
-        <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
+          <img style="height: 200px; width: 100%; display: block; border: 1px solid lightgray" src="{% static "projects/003.png" %}" alt="Card image">
         <div class="card-body">
           <p class="card-text">미국 패션 브랜드 'Supreme(슈프림)'은 인터넷 해외 직구로만 구매가 가능합니다. 그렇기에
             인기있는 제품들은 제품이 올라온지 5초안에 품절됩니다. 그 짧은 시간에 마우스로 제품을 선택하고 카드 번호와
